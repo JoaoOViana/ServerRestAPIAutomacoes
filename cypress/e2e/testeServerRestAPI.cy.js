@@ -4,7 +4,7 @@ describe('Testes API ServerRest', () => {
             method: 'POST',
             url: 'https://serverest.dev/login',
             body: {
-                email: 'test@qa.com.br',
+                email: 'fulaanoo@teste.com.br',
                 password: 'teste',
             },
             Headers: {
@@ -22,8 +22,8 @@ describe('Testes API ServerRest', () => {
             url: 'https://serverest.dev/login',
             failOnStatusCode: false,
             body: {
-                email: 'teste@teste.com.br',
-                password: '123457',
+                email: 'fulaanoo@teste.com.br',
+                password: 'testee',
             },
             Headers: {
                 'Content-Type': 'application/json'
@@ -183,6 +183,26 @@ describe('Testes API ServerRest', () => {
         }).then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body.message).to.contain('Registro excluído com sucesso')
+        })       
+    })
+
+    it('Deve editar um usuário (200)', () => {
+        cy.request({
+            method: 'PUT',
+            url: 'https://serverest.dev/usuarios/FJjHQc2Y25orMOpY',
+            failOnStatusCode: false,
+            body: {
+                nome: 'Joee',
+                email: 'joaoteste@gmail.com',
+                password: '1234567',
+                administrador: 'true'
+            },
+            Headers: {
+                'Content-Type': 'application/json' 
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(200)
+            expect(response.body.message).to.contain('Registro alterado com sucesso')
         })       
     })
     
